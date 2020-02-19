@@ -2,12 +2,12 @@ package br.com.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
+import java.util.List;
 import br.com.jpautil.JpaUtil;
 
-public class GenericDAO<E> {
+public class GenericDAO<Entidade> {
 
-	public void save(E entidade) {
+	public void save(Entidade entidade) {
 		//Usando o JpaUtils que foi criado em br.com.jpautil
 		EntityManager entityManager = JpaUtil.getEntityManager();
 		
@@ -31,5 +31,28 @@ public class GenericDAO<E> {
 		
 		//fechando conexão
 		entityManager.close();
+	}
+	
+	public List<Entidade> getListEntity(Class<Entidade> entidade){
+	
+		//Usando o JpaUtils que foi criado em br.com.jpautil
+		EntityManager entityManager = JpaUtil.getEntityManager();
+				
+		//Obtendo uma transação para o banco de dados (iniciando um processo para alguma operação (CRUD)
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+				
+		//Iniciando a transação (ativando)
+		entityTransaction.begin();
+		
+		List<Entidade> listaEntidade = entityManager.createQuery("from "+entidade.getName()).getResultList();
+				
+		
+		//fazendo commit
+		entityTransaction.commit();
+				
+		//fechando conexão
+		entityManager.close();
+		
+		return listaEntidade;
 	}
 }

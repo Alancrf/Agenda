@@ -1,5 +1,7 @@
 package br.com.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import br.com.dao.GenericDAO;
@@ -8,7 +10,7 @@ import br.com.entities.Contato;
 public class View {
 
 	public static void main(String[] args) {
-		
+/*		
 		Contato contato = new Contato();
 		GenericDAO<Contato> daoGeneric = new GenericDAO<Contato>();
 		Scanner scanner =  new Scanner(System.in);
@@ -27,6 +29,19 @@ public class View {
 		daoGeneric.save(contato);
 		
 		scanner.close();
+*/		
+		List<Contato> contatos = new ArrayList<Contato>();
+		GenericDAO<Contato> genericDAO = new GenericDAO<Contato>();
+		contatos = genericDAO.getListEntity(Contato.class);
+		System.out.print("ID  Nome      Telefone    Endereco");
+		System.out.println("");
+		for (Contato contato : contatos) {
+			
+			System.out.println(contato.getId() + "  " + contato.getNome() + "  " + contato.getTelefone() + "  " + (contato.getEndereco()));
+			
+		}
+		
+		
 	}
-	
+		
 }
