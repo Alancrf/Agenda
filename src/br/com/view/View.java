@@ -10,7 +10,29 @@ import br.com.entities.Contato;
 public class View {
 
 	public static void main(String[] args) {
-/*		
+	
+		//inserir();
+		//listar();
+		delete();
+			
+	}
+	
+	public static void listar() {
+		
+		List<Contato> contatos = new ArrayList<Contato>();
+		GenericDAO<Contato> genericDAO = new GenericDAO<Contato>();
+		contatos = genericDAO.getListEntity(Contato.class);
+		System.out.print("ID  Nome      Telefone    Endereco");
+		System.out.println("");
+		for (Contato contato : contatos) {
+			
+			System.out.println(contato.getId() + "  " + contato.getNome() + "  " + contato.getTelefone() + "  " + (contato.getEndereco()));
+			
+		}
+		
+	}
+	
+	public static void inserir () {
 		Contato contato = new Contato();
 		GenericDAO<Contato> daoGeneric = new GenericDAO<Contato>();
 		Scanner scanner =  new Scanner(System.in);
@@ -29,19 +51,21 @@ public class View {
 		daoGeneric.save(contato);
 		
 		scanner.close();
-*/		
-		List<Contato> contatos = new ArrayList<Contato>();
-		GenericDAO<Contato> genericDAO = new GenericDAO<Contato>();
-		contatos = genericDAO.getListEntity(Contato.class);
-		System.out.print("ID  Nome      Telefone    Endereco");
-		System.out.println("");
-		for (Contato contato : contatos) {
-			
-			System.out.println(contato.getId() + "  " + contato.getNome() + "  " + contato.getTelefone() + "  " + (contato.getEndereco()));
-			
-		}
+	}
+	
+	public static void delete () {
+		
+		Contato contato = new Contato();
+		GenericDAO<Contato> daoGeneric = new GenericDAO<Contato>();
+		Scanner scanner =  new Scanner(System.in);
 		
 		
+		System.out.println("Digite o ID para deletar");
+		long id = scanner.nextLong();
+		contato.setId(id);
+		
+		daoGeneric.delete(contato, contato.getId());
+		scanner.close();
 	}
 		
 }

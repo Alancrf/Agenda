@@ -44,9 +44,9 @@ public class GenericDAO<Entidade> {
 		//Iniciando a transação (ativando)
 		entityTransaction.begin();
 		
+		@SuppressWarnings("unchecked")
 		List<Entidade> listaEntidade = entityManager.createQuery("from "+entidade.getName()).getResultList();
 				
-		
 		//fazendo commit
 		entityTransaction.commit();
 				
@@ -54,5 +54,32 @@ public class GenericDAO<Entidade> {
 		entityManager.close();
 		
 		return listaEntidade;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public void delete(Entidade entidade, long id) {
+		
+	
+		//Usando o JpaUtils que foi criado em br.com.jpautil
+		EntityManager entityManager = JpaUtil.getEntityManager();
+						
+		//Obtendo uma transação para o banco de dados (iniciando um processo para alguma operação (CRUD)
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+						
+		//Iniciando a transação (ativando)
+		entityTransaction.begin();
+		
+		entidade = (Entidade) entityManager.find(entidade.getClass(), id);
+		
+		entityManager.remove(entidade);
+		
+		//fazendo commit
+		entityTransaction.commit();
+						
+		//fechando conexão
+		entityManager.close();
+		
 	}
 }
