@@ -33,6 +33,34 @@ public class GenericDAO<Entidade> {
 		entityManager.close();
 	}
 	
+	public void update(Entidade entidade) {
+		
+		//Usando o JpaUtils que foi criado em br.com.jpautil
+		EntityManager entityManager = JpaUtil.getEntityManager();
+				
+		//Obtendo uma transação para o banco de dados (iniciando um processo para alguma operação (CRUD)
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+				
+		//Iniciando a transação (ativando)
+		entityTransaction.begin();
+				
+		//Salvando no Banco de dados, (é preciso chamar o método persist e passando a entidade recebida por parâmetro)
+		try {
+			entityManager.merge(entidade);
+		} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		entityTransaction.rollback();
+		}
+				
+		//fazendo commit
+		entityTransaction.commit();
+				
+		//fechando conexão
+		entityManager.close();
+		
+	}
+	
 	public List<Entidade> getListEntity(Class<Entidade> entidade){
 	
 		//Usando o JpaUtils que foi criado em br.com.jpautil
@@ -55,8 +83,6 @@ public class GenericDAO<Entidade> {
 		
 		return listaEntidade;
 	}
-	
-	
 	
 	@SuppressWarnings("unchecked")
 	public void delete(Entidade entidade, long id) {

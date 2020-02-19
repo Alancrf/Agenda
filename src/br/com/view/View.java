@@ -12,9 +12,9 @@ public class View {
 	public static void main(String[] args) {
 	
 		//inserir();
-		//listar();
-		delete();
-			
+		//delete();
+		//update();
+		listar();	
 	}
 	
 	public static void listar() {
@@ -27,7 +27,7 @@ public class View {
 		for (Contato contato : contatos) {
 			
 			System.out.println(contato.getId() + "  " + contato.getNome() + "  " + contato.getTelefone() + "  " + (contato.getEndereco()));
-			
+			//Rua C, Casa 20, Jardis Mangueiral     61983194067
 		}
 		
 	}
@@ -66,6 +66,33 @@ public class View {
 		
 		daoGeneric.delete(contato, contato.getId());
 		scanner.close();
+	}
+	
+	public static void update() {
+		
+		Contato contato = new Contato();
+		GenericDAO<Contato> genericDAO = new GenericDAO<Contato>();
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Digite o ID para fazer update");
+		long id = scanner.nextLong();
+		contato.setId(id);
+		
+		scanner.nextLine();
+		System.out.println("Digite o Nome");
+		String nome = scanner.nextLine();
+		System.out.println("Digite o Endereço");
+		String endereco = scanner.nextLine();
+		System.out.println("Digite o Telefone");
+		String telefone = scanner.nextLine();
+		
+		contato.setNome(nome);
+		contato.setEndereco(endereco);
+		contato.setTelefone(telefone);
+		
+		genericDAO.update(contato);
+		scanner.close();
+		
 	}
 		
 }
