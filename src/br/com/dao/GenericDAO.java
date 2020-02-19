@@ -5,9 +5,9 @@ import javax.persistence.EntityTransaction;
 import java.util.List;
 import br.com.jpautil.JpaUtil;
 
-public class GenericDAO<Entidade> {
+public class GenericDAO<E> {
 
-	public void save(Entidade entidade) {
+	public void save(E entidade) {
 		//Usando o JpaUtils que foi criado em br.com.jpautil
 		EntityManager entityManager = JpaUtil.getEntityManager();
 		
@@ -33,7 +33,7 @@ public class GenericDAO<Entidade> {
 		entityManager.close();
 	}
 	
-	public void update(Entidade entidade) {
+	public void update(E entidade) {
 		
 		//Usando o JpaUtils que foi criado em br.com.jpautil
 		EntityManager entityManager = JpaUtil.getEntityManager();
@@ -61,7 +61,7 @@ public class GenericDAO<Entidade> {
 		
 	}
 	
-	public List<Entidade> getListEntity(Class<Entidade> entidade){
+	public List<E> getListEntity(Class<E> entidade){
 	
 		//Usando o JpaUtils que foi criado em br.com.jpautil
 		EntityManager entityManager = JpaUtil.getEntityManager();
@@ -73,7 +73,7 @@ public class GenericDAO<Entidade> {
 		entityTransaction.begin();
 		
 		@SuppressWarnings("unchecked")
-		List<Entidade> listaEntidade = entityManager.createQuery("from "+entidade.getName()).getResultList();
+		List<E> listaEntidade = entityManager.createQuery("from "+entidade.getName()).getResultList();
 				
 		//fazendo commit
 		entityTransaction.commit();
@@ -85,7 +85,7 @@ public class GenericDAO<Entidade> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void delete(Entidade entidade, long id) {
+	public void delete(E entidade, long id) {
 		
 	
 		//Usando o JpaUtils que foi criado em br.com.jpautil
@@ -97,7 +97,7 @@ public class GenericDAO<Entidade> {
 		//Iniciando a transação (ativando)
 		entityTransaction.begin();
 		
-		entidade = (Entidade) entityManager.find(entidade.getClass(), id);
+		entidade = (E) entityManager.find(entidade.getClass(), id);
 		
 		entityManager.remove(entidade);
 		
