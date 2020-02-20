@@ -5,17 +5,17 @@ import java.util.List;
 
 import br.com.dao.GenericDAO;
 import br.com.entities.Contato;
-import br.com.view.View;
-import br.com.view.View.ACAO;
+import br.com.view.ViewContato;
+import br.com.view.ViewContato.ACAO;
 
 public class Controller {
 	
-	View view = new View();
+	ViewContato view = new ViewContato();
 	
 	public static void main(String[] args) {
 		
 		Controller controller = new Controller();
-		View view = new View();
+		ViewContato view = new ViewContato();
 		int opcao = view.optionMenu();
 		
 		if(opcao == 1) {

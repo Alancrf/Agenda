@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import br.com.entities.Contato;
 
-public class View {
+public class ViewContato {
 
 	public static enum ACAO {
 
