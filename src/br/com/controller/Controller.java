@@ -2,7 +2,6 @@ package br.com.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import br.com.dao.GenericDAO;
 import br.com.entities.Contato;
@@ -14,12 +13,21 @@ public class Controller {
 	View view = new View();
 	
 	public static void main(String[] args) {
-		Controller controller = new Controller();
-		//controller.listar();
-		//controller.inserir();
-		//controller.delete();
-		controller.update();
 		
+		Controller controller = new Controller();
+		View view = new View();
+		int opcao = view.optionMenu();
+		
+		if(opcao == 1) {
+			controller.inserir();
+		}else if(opcao == 2) {
+			controller.update();
+		}else if(opcao == 3) {
+			controller.delete();
+		}else if (opcao == 4){
+			controller.listar();
+		}
+
 	}
 	
 	public void listar() {
@@ -30,7 +38,7 @@ public class Controller {
 		view.listar(contatos);
 	}
 	
-	public  void inserir () {
+	public void inserir () {
 		Contato contato = new Contato();
 		GenericDAO<Contato> daoGeneric = new GenericDAO<Contato>();
 		view.preencheContato(contato, ACAO.CADASTRAR);
