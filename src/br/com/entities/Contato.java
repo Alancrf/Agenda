@@ -1,9 +1,12 @@
 package br.com.entities;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Contato {
@@ -15,7 +18,17 @@ public class Contato {
 	private String nome;
 	private String endereco;
 	private String telefone;
+	@ManyToMany(mappedBy = "contatos")
+	private Set<Evento> eventos;
 	
+	public Set<Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(Set<Evento> eventos) {
+		this.eventos = eventos;
+	}
+
 	public Contato() {
 	
 	}

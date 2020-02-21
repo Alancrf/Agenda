@@ -3,17 +3,21 @@ package br.com.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
 import br.com.dao.GenericDAO;
 import br.com.entities.Contato;
+import br.com.jpautil.JpaUtil;
 import br.com.view.ViewContato;
 import br.com.view.ViewContato.ACAO;
 
-public class Controller {
+public class ControllerContato {
 	
 	ViewContato view = new ViewContato();
 	
 	public static void main(String[] args) {
-		
+	/*	
 		Controller controller = new Controller();
 		ViewContato view = new ViewContato();
 		int opcao = view.optionMenu();
@@ -27,7 +31,8 @@ public class Controller {
 		}else if (opcao == 4){
 			controller.listar();
 		}
-
+*/
+		
 	}
 	
 	public void listar() {
