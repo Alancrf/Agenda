@@ -32,6 +32,8 @@ public class ControllerContato {
 			controller.listar();
 		}
 */
+		ControllerContato controller = new ControllerContato();
+		controller.listar();
 		
 	}
 	
