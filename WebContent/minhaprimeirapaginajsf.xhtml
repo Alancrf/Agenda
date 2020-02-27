@@ -21,6 +21,37 @@
 		<br></br>
 		
 		<h:commandButton value = "Salvar" action="#{beanContato.salvar}"/>
+		
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+		
+		<table>
+		<tr>
+		
+		<h:dataTable value = "#{beanContato.contatos}" var="contato">
+		
+			<h:column>
+				<h:outputText value = "#{contato.id}" /> 
+			</h:column>
+		
+			<h:column>
+				<h:outputText value = "#{contato.nome}" />
+			</h:column>
+			
+			<h:column>
+				<h:outputText value = "#{contato.endereco}" />
+			</h:column>
+			
+			<h:column>
+				<h:outputText value = "#{contato.telefone}" />
+			</h:column>
+		
+		</h:dataTable>
+	   </tr>
+	   
+		</table>
 	
 	</h:form>
 
