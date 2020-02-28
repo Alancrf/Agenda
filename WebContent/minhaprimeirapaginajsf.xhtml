@@ -1,58 +1,71 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert</title>
+<title>Cadastro Contato</title>
 </head>
 
 <h:body>
 
-	<h:form id="formPessoa">
-		<h:outputLabel value = "Nome"/>
-		<h:inputText value = "#{beanContato.contato.nome}"/>
+	<h:form id="formContato">
+
+		<h:outputLabel value="Nome" />
 		<br></br>
-		<h:outputLabel value = "Endereço"/>
-		<h:inputText value = "#{beanContato.contato.endereco}"/>
+		<h:inputText value="#{beanContato.contato.nome}" />
 		<br></br>
-		<h:outputLabel value = "Telefone"/>
-		<h:inputText value = "#{beanContato.contato.telefone}"/>
+		<h:outputLabel value="Endereço" />
 		<br></br>
-		
-		<h:commandButton value = "Salvar" action="#{beanContato.salvar}"/>
-		
+		<h:inputText value="#{beanContato.contato.endereco}" />
 		<br></br>
+		<h:outputLabel value="Telefone" />
 		<br></br>
+		<h:inputText value="#{beanContato.contato.telefone}" />
 		<br></br>
 		<br></br>
-		
-		<table>
-		<tr>
-		
-		<h:dataTable value = "#{beanContato.contatos}" var="contato">
-		
+		<h:commandButton value="Salvar" action="#{beanContato.salvar}" />
+
+		<h:commandButton value="Update" action="#{beanContato.update}" />
+
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+
+		<h:dataTable value="#{beanContato.contatos}" var="contato">
+
 			<h:column>
-				<h:outputText value = "#{contato.id}" /> 
+				<h:outputText value="#{contato.nome}" />
 			</h:column>
-		
+
 			<h:column>
-				<h:outputText value = "#{contato.nome}" />
+				<h:outputText value="#{contato.endereco}" />
 			</h:column>
-			
+
 			<h:column>
-				<h:outputText value = "#{contato.endereco}" />
+				<h:outputText value="#{contato.telefone}" />
 			</h:column>
-			
+
 			<h:column>
-				<h:outputText value = "#{contato.telefone}" />
+				<h:commandLink value="Editar">
+					<f:setPropertyActionListener value="#{contato}"
+						target="#{beanContato.contato}" />
+				</h:commandLink>
 			</h:column>
-		
+
+			<h:column>
+				<h:commandLink value="Excluir" action="#{beanContato.delete}">
+					<f:setPropertyActionListener value="#{contato}"
+						target="#{beanContato.contato}"></f:setPropertyActionListener>
+				</h:commandLink>
+
+			</h:column>
+
 		</h:dataTable>
-	   </tr>
-	   
-		</table>
-	
+
 	</h:form>
 
 </h:body>

@@ -1,4 +1,4 @@
-package br.com.bean;
+package br.com.bean.controle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,36 @@ public class BeanContato {
 
 	public String salvar () {
 		
-		genericDAO.save(contato);
+		if(contato.getId() == 0) {
+			
+			genericDAO.save(contato);
+			load();
+		
+		}else {
+			genericDAO.update(contato);
+			load();
+		}
+		
+		return "";
+	}
+	
+	public String update() {
+		
+		genericDAO.update(contato);
+		
+		load();
+		
+		return "";
+	}
+	
+	public String delete() {
+		
+		if(contato.getId() == 0) {
+			return "";
+		}else {
+			genericDAO.delete(contato, contato.getId());
+			load();
+		}
 		
 		return "";
 	}
